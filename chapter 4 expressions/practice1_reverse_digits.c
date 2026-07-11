@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int main(void) {
+  int i1, i2, i3;
+  printf("Enter a 3-digit number: ");
+  scanf("%1d%1d%1d", &i1, &i2, &i3);
+  printf("Digits reversded: %d%d%d", i3, i2, i1);
+
+  return 0;
+}
