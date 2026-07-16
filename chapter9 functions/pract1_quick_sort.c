@@ -11,8 +11,8 @@ In sorted order: 3 4 9 12 16 25 47 51 66 82
 #include <stdio.h>
 
 // Initially, low should be the index of the first element of an array
-void split(int a_length, int low, int high);
-int a[10];
+void split(int low, int high);
+int a[10], index[10], index_p = 0;
 
 int main(void) {
 
@@ -21,17 +21,19 @@ int main(void) {
     scanf("%d", &a[i]);
   }
 
-  split(10, 0, 9);
+  split(0, 9);
 
+  printf("In sorted order: ");
   for(int i = 0; i < 10; i++) {
-    printf("%d\t", a[i]);
+    printf("%d ", a[i]);
   }
+  printf("\n");
+  
   return 0;
 }
 
-void split(int a_length, int low, int high) {
-  int par_num = a[low];
-  short par_index = low;
+void split(int low, int high) {
+  int par_num = a[low], par_index = low, low_orig = low, high_orig = high;
 
   // If the length of array is 1, no need to sort
   if (low >= high) {
@@ -63,10 +65,12 @@ void split(int a_length, int low, int high) {
     }
   }
 
-  // Now low == high. Fill the par_num back into the hole.
-  a[low] = par_num;
-  
+  // Now low == high . Fill the par_num back into the hole.
+  a[par_index] = par_num;
+  index[par_index] = 1;
+
   // Then start sorting the array on the hole's left and the array on the right
-  split(low, 0, low - 1);//这里的第二个参数绝不是0.是什么明天再想想
-  split(a_length - low - 1, low + 1, a_length - 1);
+  split(low_orig, par_index - 1);
+  split(par_index + 1, high_orig);
+  
 }
