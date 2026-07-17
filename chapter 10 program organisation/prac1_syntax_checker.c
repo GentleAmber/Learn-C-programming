@@ -13,6 +13,7 @@ Parentheses/braces are nested properly
 char stack[STACK_SIZE];
 int top = 0;
 
+
 void make_empty(void);
 bool is_empty(void);
 bool is_full(void);
@@ -24,10 +25,43 @@ void stack_underflow(void);
 int main(void) {
 
   printf("Enter parentheses and/or braces: ");
-  for (int i = 0; i < STACK_SIZE; i++) {
+  for (int i = 0; i < STACK_SIZE * 2; i++) {
     char c = getchar();
-    if (c != '\n') {
+    switch (c)
+    {
+    case '(': case '{':
+      push(c);
+      break;
+    
+    case '}': 
+      if (pop() != '{') {
+        printf("Not nested properly.\n");
+        exit(1);
+      }
+      break;
+
+    case ')':
+      if (pop() != '(') {
+        printf("Not nested properly.\n");
+        exit(1);
+      }
+      break;
+
+    case '\n':
+      goto input_ends;
+
+    default:
+      printf("Illegal character '%c' ignored.\n", c);
+      break;
     }
+  }
+
+  input_ends:
+  if (is_empty()) {
+    printf("Parentheses/braces are nested properly\n");
+  } else {
+    printf("Not nested properly.\n");
+
   }
   return 0;
 }
