@@ -42,5 +42,13 @@
 			"printf(\"\\n\");"
 		],
 		"description": "while loop's template"
-	}
+	},
+
+  "printf shortcut": {
+    "prefix": "prif",
+		"body": [
+			"printf(\"$1\");"
+		],
+		"description": "shortcut for printf"
+  }
 }
