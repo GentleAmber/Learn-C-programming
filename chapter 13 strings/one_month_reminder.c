@@ -29,7 +29,7 @@ Day Reminder
 #include <stdlib.h>
 #include <string.h>
 #define LEN_INPUT 150
-#define LEN_LIST 300 
+#define LIST_LEN 300 
 
 /* Read a full sentence into @in. @input_len represents the maximum number of characters
    in a sentence. */
@@ -38,10 +38,10 @@ void read_input(char in[], int input_len);
 void sort_string(char str[][LEN_INPUT + 1], int n);
 
 int main(void) {
-  char in[LEN_LIST][LEN_INPUT + 1];
+  char in[LIST_LEN][LEN_INPUT + 1];
   int i = 0;
 
-  for (; i < LEN_LIST; i++) {
+  for (; i < LIST_LEN; i++) {
     char *end_program = "0\0", temp[LEN_INPUT + 1];
     printf("Enter day and reminder: ");
     read_input(temp, LEN_INPUT);
